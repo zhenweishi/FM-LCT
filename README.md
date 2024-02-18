@@ -1,3 +1,6 @@
+
+# The FM-LCT model and analysis codes will be uploaded soon.
+
 <p align="center">
   <img width="1000" alt="FM-LCT-title" src="https://github.com/zhenweishi/FM-LCT/assets/17007301/6364d467-8577-4bf7-a6d9-041a3ec11b64">
 </p>
