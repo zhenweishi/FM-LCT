@@ -4,7 +4,7 @@ from fmlct.third_libs.cam3d.utils.image import show_cam_on_image
 import timm
 import numpy as np
 
-def run_vit_cam(model, input_tensor, target=1, invert=True, clip=0.):
+def run_vit_cam(model, input_tensor, target=1, invert=False, clip=0.):
     # =================== grad-cam vit 3D ===================
     target_layers = [model.blocks[-1].norm1]
     def reshape_transform_3d(tensor):

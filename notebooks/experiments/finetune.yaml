@@ -1,0 +1,126 @@
+imports:
+  - "$import fmlct"
+
+# ============= General =============
+run_name: DATASET1
+output_root: finetuning_out
+remark: "Dataset: CT toy; for demo only"
+seed: null
+
+# ============= Trainer =============
+trainer_name: ViT3DTrainer
+batch_size: 8
+workers: 0
+epochs: 20
+start_epoch: 0
+pretrain: pretrained_checkpoint/lung_CT_checkpoint.pth.tar
+resume: null
+
+# ======================================
+# ↓↓↓↓↓↓↓ Checkpoints and Logger ↓↓↓↓↓↓↓
+print_freq: 5
+val_print_freq: -1
+save_freq: 5
+save_best: true
+use_wandb: false
+use_tensorboard: true
+save_cfg: true
+log_image: false
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# ======================================
+
+
+
+# ======================================
+# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Dataset ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+in_chans: 1
+roi_size: 48
+
+train_dataset_obj:
+  _target_: fmlct.lib.datasets.PatchDataset
+  csv_path: processed/DATASET1/all_roi_resize48/all_roi_resize48.csv
+  label: "demo_label"
+  enable_negatives: false
+  normalize: false
+  size: "@roi_size"
+  method: "resize"
+  read_in_memory: true
+  only_roi: true
+  transform: 
+    _target_: fmlct.lib.transforms.Compose
+    transforms:
+      - _target_: fmlct.lib.transforms.WindowingTransform
+        window_level: -450
+        window_width: 1500
+      - _target_: fmlct.lib.transforms.CTAugmentation
+        size: "@roi_size"
+      - _target_: fmlct.lib.transforms.MinMax01
+
+val_dataset_obj:
+  _target_: fmlct.lib.datasets.PatchDataset
+  csv_path: processed/DATASET1/all_roi_resize48/all_roi_resize48.csv
+  label: "demo_label"
+  enable_negatives: false
+  normalize: true
+  size: "@roi_size"
+  method: "resize"
+  read_in_memory: true
+  only_roi: true
+  transform: 
+    _target_: fmlct.lib.transforms.Compose
+    transforms:
+      - _target_: fmlct.lib.transforms.WindowingTransform
+        window_level: -450
+        window_width: 1500
+      - _target_: fmlct.lib.transforms.CTValAugmentation
+        size: "@roi_size"
+      - _target_: fmlct.lib.transforms.MinMax01
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# ======================================
+
+
+
+# ======================================
+# ↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Model ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+model_name: vit_3d_base_patchsize8
+arch: null
+stop_grad_conv1: true
+freeze_all_except_fc: true
+num_classes: 2
+
+
+model_obj: # No need to change
+  _target_: "$getattr(fmlct.lib.models, @model_name)"
+  img_size: "@roi_size"
+  in_chans: "@in_chans"
+  stop_grad_conv1: "@stop_grad_conv1"
+  num_classes: "@num_classes"
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# ======================================
+
+
+
+# ======================================
+# ↓↓↓↓↓↓↓↓↓↓↓↓ Optimizer ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+optimizer: sgd
+warmup_epochs: 40
+lr: 0.1
+momentum: 0.9
+weight_decay: 0.
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# =====================================
+
+
+
+# ======================================
+# ↓↓↓↓↓↓↓↓↓↓↓ GPU and DDP ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+gpu: 0 # if `multiprocessing_distributed` is true, this arg will be ignored
+multiprocessing_distributed: false # true: Default use all gpus. Use `export CUDA_VISIBLE_DEVICES=0,2` to choose gpus.
+ngpus_per_node: null # if not set, will use all gpus
+rank: 0 # the ID of this node
+world_size: 1 # the number of nodes
+distributed: null # will be replaced: args.distributed = args.world_size > 1 or args.multiprocessing_distributed
+dist_backend: nccl
+dist_url: 'tcp://localhost:10011'
+# ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+# =====================================
