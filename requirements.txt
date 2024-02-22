@@ -185,3 +185,4 @@ yarg==0.1.9
 zipp==3.17.0
 seaborn==0.13.1
 shap==0.44.0
+tensorflow==2.15
