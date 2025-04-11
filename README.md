@@ -22,7 +22,7 @@ The FM-LCT model was pre-trained by using constrative learning algorithms (Figur
 
 Before using the FM-LCT foundation model, we suggest users create a vistual environment. Some example codes are as follows:
 ```
-conda create --name fmlct python==3.8
+conda create --name fmlct python==3.9.18
 conda activate fmlct
 ```
 Then install related dependencies.
@@ -38,7 +38,7 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ## Quick Start (10 mins)
 
 The FM-LCT model can be used in two manners (Figure B). For easy use, we provide an example notebook to describe how it works. The example codes are in Jupyter notebooks.
-Note that, users should download the FM-LCT model from the [link](https://drive.google.com/drive/folders/1awQGIi9uXcJuTaOLDkKvG6c-1Vv3ulz_?usp=drive_link) firstly. Also, users need to download dummy data from the [link](https://drive.google.com/drive/folders/1jbP0-lV5tJOBtN2oVBbTfYDs3rcXQodV?usp=drive_link) .
+Note that, users should download the FM-LCT model from the [link](https://drive.google.com/file/d/1YS4Rdj8TkiJAIIrJHdWHtgX38sVcwUmW/view?usp=sharing) firstly. Also, users need to download dummy data from the [link](https://drive.google.com/drive/folders/1jbP0-lV5tJOBtN2oVBbTfYDs3rcXQodV?usp=drive_link) .
 ```
 [main_directory]/notebooks/[pretrained_checkpoint]
 [main_directory]/notebooks/[dataset]
