@@ -8,7 +8,6 @@
 
 FM-LCT is a vertical foundation model for quantitative CT analysis in lung cancer. FM-LCT is trained on a diverse dataset covering various lung cancer types and stages, and it undergoes meticulous data preprocessing, ensuring optimal input quality. Harnessing advanced deep learning techniques (contrastive learning algorithms), the model extracts deep learning-based features from CT scans, unveiling crucial insights into morphological features, shape characteristics, and texture features. Positioned for versatile applications in both research and clinical realms, it empowers researchers with nuanced data exploration and provides healthcare professionals with support for informed decision-making.
 
-The FM-LCT is designed and developed by Dr.Zhenwei Shi, Zhihe Zhao, Zhitao Wei, Dr.Chu Han and other AI/CS scientists from [Media Lab](https://github.com/GDPHMediaLab). Also, the work is supported and guided by experienced radiologists Prof. MD Zaiyi Liu and Prof. MD Changhong Liang from the radiolgoy department of Guangdong Provincial People's Hospital.
 
 ## Major Features
 
@@ -52,22 +51,18 @@ This project is freely available to browse, download, and use for scientific and
 
 FM-LCT is still under development. Although we have tested and evaluated the workflow under many different situations, it may have errors and bugs unfortunately. Please use it cautiously. If you find any, please contact us and we would fix them ASAP.
 
+
 ## Main Developers
  - [Dr. Zhenwei Shi](https://github.com/zhenweishi) <sup/>1, 2
- - MSc. Zhihe Zhao <sup/>2, 3
- - MSc. Zhitao Wei <sup/>2, 4
- - MSc. Xiaodong Zheng <sup/>2, 4
+ - [MSc. Zhitao Wei](https://github.com/kissablemt) <sup/>1, 2
  - [Dr. Chu Han](https://chuhan89.com) <sup/>1, 2
  - MD. Changhong Liang <sup/>1, 2
  - MD. Zaiyi Liu <sup/>1, 2
  
-
 <sup>1</sup> Department of Radiology, Guangdong Provincial People's Hospital (Guangdong Academy of Medical Sciences), Southern Medical University, China <br/>
 <sup>2</sup> Guangdong Provincial Key Laboratory of Artificial Intelligence in Medical Image Analysis and Application, China <br/>
-<sup>3</sup> School of Medicine, South China University of Technology, China <br/>
-<sup>4</sup> Institute of Computing Science and Technology, Guangzhou University, China <br/>
+
 
 ## Contact
-We are happy to help you with any questions. Please contact Dr Zhenwei Shi.
 
-We welcome contributions to FM-LCT.
+📧 For collaboration inquiries, please contact Prof. Zhenwei Shi [Contact Email](shizhenwei@gdph.org.cn)
